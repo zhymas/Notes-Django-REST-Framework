@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
-from .views import LinksAPI, Logout, CreateNotesAPI, UpdateAPIView, ListNotesAPI, RetrieveAPIView, DeleteNotesAPI
+from .views import LinksAPI, Logout, CreateNotesAPI, UpdateAPIView, ListNotesAPI, RetriveNotesAPI, DeleteNotesAPI
 
 
 urlpatterns = [
@@ -11,6 +11,6 @@ urlpatterns = [
     path('api/v1/create_note/', CreateNotesAPI.as_view()),
     path('api/v1/notes/', ListNotesAPI.as_view()),
     path('api/v1/note/<int:pk>', UpdateAPIView.as_view()),
-    path('api/v1/note_retrieve/<int:pk>/', RetrieveAPIView.as_view()),
+    path('api/v1/note_retrieve/<int:pk>/', RetriveNotesAPI.as_view()),
     path('api/v1/note_delete/<int:pk>', DeleteNotesAPI.as_view())
 ]

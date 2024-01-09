@@ -61,7 +61,9 @@ class DeleteNotesAPI(DestroyAPIView):
 
 class RetriveNotesAPI(RetrieveAPIView):
     serializer_class = NotesSerializer
-    queryset = Note.objects.all()
+    
+    def get_queryset(self):
+        return Note.objects.all()
 
 
 class ListNotesAPI(ListAPIView):
