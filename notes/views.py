@@ -6,6 +6,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView
 from .serializers import NotesSerializer
 from .models import Note
+from .permission import IsAnAuthor
 
 class LinksAPI(APIView):
 
@@ -33,6 +34,7 @@ class Logout(APIView):
 
 class CreateNotesAPI(CreateAPIView):
 
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = NotesSerializer
     queryset = Note.objects.all()
 
@@ -50,16 +52,19 @@ class CreateNotesAPI(CreateAPIView):
 
 
 class UpdateNotesAPI(UpdateAPIView):
+    permission_classes = [IsAnAuthor]
     serializer_class = NotesSerializer
     queryset = Note.objects.all()
 
 
 class DeleteNotesAPI(DestroyAPIView):
+    permission_classes = [IsAnAuthor]
     serializer_class = NotesSerializer
     queryset = Note.objects.all()
 
 
 class RetriveNotesAPI(RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = NotesSerializer
     
     def get_queryset(self):
@@ -67,5 +72,6 @@ class RetriveNotesAPI(RetrieveAPIView):
 
 
 class ListNotesAPI(ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = NotesSerializer
     queryset = Note.objects.all()
