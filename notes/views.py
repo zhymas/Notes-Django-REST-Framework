@@ -17,7 +17,9 @@ class LinksAPI(APIView):
             "logout-user": 'http://127.0.0.1:8000/auth/logout/',
             "create-note(only auth user)": 'http://127.0.0.1:8000/api/v1/create_note/',
             "view existing notes(only for auth user)": 'http://127.0.0.1:8000/api/v1/notes/',
-            "api/v1/notes/<int:pk>": 'http://127.0.0.1:8000/api/v1/notes/{id_notes}'
+            "update note": 'http://127.0.0.1:8000/api/v1/note/{id_note}',
+            "retrieve note": 'http://127.0.0.1:8000/api/v1/note_retrieve/{id_note}',
+            "delete note": 'http://127.0.0.1:8000/api/v1/note_delete/{id_note}'
         }
         return Response(endpoints)
 
