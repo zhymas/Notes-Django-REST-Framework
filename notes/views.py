@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
+from django.contrib.auth import logout
+from rest_framework.authtoken.models import Token
 
 class LinksAPI(APIView):
 
@@ -17,5 +19,7 @@ class LinksAPI(APIView):
 class Logout(APIView):
     
     def get(self, request, format=None):
-        request.user.token.delete()
-        return Response({'logout': 'user has logout'})
+        token = Token.objects.get(user=request.user)
+        token.delete()
+        logout(request)
+        return Response({'success': 'user has logout'})
